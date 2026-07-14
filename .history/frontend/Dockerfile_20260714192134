@@ -1,0 +1,24 @@
+# Pehla stage: Build karna
+FROM node:18-alpine AS build
+
+WORKDIR /app
+
+# Dependencies install karo
+COPY package*.json ./
+RUN npm install
+
+# Code copy karo aur build karo
+COPY . .
+RUN npm run build
+
+# Doosra stage: Serve karna (Nginx)
+FROM nginx:alpine
+
+# Build folder ko Nginx mein copy karo
+COPY --from=build /app/build /usr/share/nginx/html
+
+# Port expose karo (Nginx ka default port)
+EXPOSE 80
+
+# Nginx start karo
+CMD ["nginx", "-g", "daemon off;"]

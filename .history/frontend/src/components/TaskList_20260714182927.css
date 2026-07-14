@@ -1,0 +1,114 @@
+/* TaskList.css - Pure Bootstrap + Custom CSS */
+.task-container {
+  max-width: 800px;
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.task-header h2 {
+  margin-bottom: 0;
+}
+
+.task-count {
+  color: #6c757d;
+  font-size: 0.875rem;
+}
+
+.border-dashed {
+  border: 2px dashed #dee2e6 !important;
+}
+
+/* Status colors - Bootstrap ke saath kaam karega */
+.status-pending {
+  background-color: #fff3cd !important;
+  color: #856404 !important;
+}
+
+.status-in-progress {
+  background-color: #cce5ff !important;
+  color: #004085 !important;
+}
+
+.status-completed {
+  background-color: #d4edda !important;
+  color: #155724 !important;
+}
+
+/* Card hover effect */
+.task-card:hover {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+/* Form styling */
+.task-form .form-label {
+  font-weight: 600;
+}
+
+/* Filter buttons active state */
+.filter-btn-active {
+  background-color: #212529 !important;
+  color: white !important;
+}
+
+.filter-btn-inactive {
+  background-color: transparent !important;
+  color: #6c757d !important;
+  border-color: #6c757d !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+  .task-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+  
+  .task-actions {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .task-actions .btn {
+    width: 100%;
+  }
+  
+  .task-status-select {
+    width: 100% !important;
+  }
+}
+
+/* Badge with emoji */
+.badge-emoji {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Empty state */
+.empty-state {
+  padding: 3rem 0;
+  text-align: center;
+  color: #6c757d;
+}
+
+/* Stack gap fix */
+.stack-gap {
+  gap: 0.5rem;
+}
+
+/* Form select custom */
+.form-select-sm-custom {
+  width: auto !important;
+}
+
+/* Spacing utilities */
+.mb-1-5 {
+  margin-bottom: 1.5rem;
+}

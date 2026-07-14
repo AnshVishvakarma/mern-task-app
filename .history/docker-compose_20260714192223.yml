@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  # 1. MongoDB Service
+  mongodb:
+    image: mongo:latest
+    container_name: task-mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+
+  # 2. Backend Service
+  backend:
+    build: ./backend
+    container_name: task-backend
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      - MONGO_URI=mongodb://mongodb:27017/taskdb
+      - JWT_SECRET=mySuperSecretKey123
+    depends_on:
+      - mongodb
+
+  # 3. Frontend Service
+  frontend:
+    build: ./frontend
+    container_name: task-frontend
+    restart: always
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+volumes:
+  mongodb_data:

@@ -1,0 +1,713 @@
+/* Register.css - Premium Modern Register Design */
+
+/* ===== ROOT VARIABLES ===== */
+:root {
+  --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --glass-bg: rgba(255, 255, 255, 0.92);
+  --glass-border: rgba(255, 255, 255, 0.3);
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.15);
+  --shadow-glow: 0 8px 32px rgba(102, 126, 234, 0.3);
+  --radius-lg: 30px;
+  --radius-md: 18px;
+  --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===== BACKGROUND ===== */
+.register-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated Background Shapes */
+.register-page::before,
+.register-page::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.1;
+  animation: float-bg 20s ease-in-out infinite;
+}
+
+.register-page::before {
+  width: 500px;
+  height: 500px;
+  background: var(--secondary-gradient);
+  top: -100px;
+  right: -100px;
+  animation-delay: -5s;
+}
+
+.register-page::after {
+  width: 400px;
+  height: 400px;
+  background: var(--primary-gradient);
+  bottom: -100px;
+  left: -100px;
+  animation-delay: -15s;
+}
+
+.register-page .shape-1,
+.register-page .shape-2 {
+  position: absolute;
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  opacity: 0.05;
+  animation: morph 25s ease-in-out infinite;
+}
+
+.register-page .shape-1 {
+  width: 300px;
+  height: 300px;
+  background: #667eea;
+  top: 20%;
+  left: 5%;
+  animation-delay: 0s;
+}
+
+.register-page .shape-2 {
+  width: 250px;
+  height: 250px;
+  background: #f093fb;
+  bottom: 20%;
+  right: 5%;
+  animation-delay: -10s;
+}
+
+@keyframes float-bg {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(30px, -30px) scale(1.1);
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+@keyframes morph {
+  0% {
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  }
+  25% {
+    border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%;
+  }
+  50% {
+    border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%;
+  }
+  75% {
+    border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%;
+  }
+  100% {
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  }
+}
+
+/* ===== REGISTER CARD - GLASSMORPHISM ===== */
+.register-card {
+  width: 100%;
+  max-width: 480px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-lg);
+  padding: 2.8rem 2.5rem;
+  position: relative;
+  z-index: 1;
+  animation: slideUp 0.6s ease-out;
+  max-height: 95vh;
+  overflow-y: auto;
+}
+
+.register-card::-webkit-scrollbar {
+  width: 4px;
+}
+
+.register-card::-webkit-scrollbar-thumb {
+  background: var(--primary-gradient);
+  border-radius: 10px;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ===== PROGRESS STEPS ===== */
+.progress-steps {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-bottom: 2rem;
+}
+
+.progress-step {
+  width: 40px;
+  height: 4px;
+  border-radius: 4px;
+  background: #e5e7eb;
+  transition: var(--transition-smooth);
+  position: relative;
+}
+
+.progress-step.active {
+  background: var(--primary-gradient);
+  width: 60px;
+}
+
+.progress-step.completed {
+  background: #10b981;
+}
+
+.progress-step .step-label {
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.6rem;
+  color: #9ca3af;
+  font-weight: 600;
+  white-space: nowrap;
+  display: none;
+}
+
+.progress-step.active .step-label,
+.progress-step.completed .step-label {
+  display: block;
+}
+
+/* ===== LOGO / ICON ===== */
+.register-logo {
+  text-align: center;
+  margin-bottom: 1.8rem;
+}
+
+.logo-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--secondary-gradient);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  color: white;
+  box-shadow: 0 4px 20px rgba(245, 87, 108, 0.3);
+  animation: pulse-icon 2s ease-in-out infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes pulse-icon {
+  0% {
+    box-shadow: 0 0 0 0 rgba(245, 87, 108, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 20px rgba(245, 87, 108, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(245, 87, 108, 0);
+  }
+}
+
+.register-logo h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 0;
+  background: var(--secondary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.5px;
+}
+
+.register-logo p {
+  color: #6b7280;
+  font-size: 0.9rem;
+  margin: 0.3rem 0 0 0;
+  font-weight: 500;
+}
+
+/* ===== FORM ===== */
+.register-form {
+  margin-top: 0.5rem;
+}
+
+/* Form Groups with Icons */
+.form-group {
+  margin-bottom: 1.3rem;
+  position: relative;
+}
+
+.form-group .input-icon {
+  position: absolute;
+  left: 1rem;
+  top: 40%;
+  transform: translateY(-50%);
+  font-size: 1.1rem;
+  color: #9ca3af;
+  transition: var(--transition-smooth);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.form-group .input-icon.active {
+  color: #f5576c;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.82rem;
+  color: #4b5563;
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.3px;
+  transition: var(--transition-smooth);
+}
+
+/* Password Strength Indicator */
+.password-strength {
+  margin-top: 0.4rem;
+  height: 4px;
+  border-radius: 4px;
+  background: #e5e7eb;
+  overflow: hidden;
+  transition: var(--transition-smooth);
+}
+
+.password-strength .strength-bar {
+  height: 100%;
+  border-radius: 4px;
+  transition: var(--transition-smooth);
+  width: 0%;
+}
+
+.password-strength .strength-bar.weak {
+  width: 33%;
+  background: #ef4444;
+}
+
+.password-strength .strength-bar.medium {
+  width: 66%;
+  background: #f59e0b;
+}
+
+.password-strength .strength-bar.strong {
+  width: 100%;
+  background: #10b981;
+}
+
+.strength-text {
+  font-size: 0.7rem;
+  margin-top: 0.2rem;
+  font-weight: 500;
+}
+
+.strength-text.weak {
+  color: #ef4444;
+}
+
+.strength-text.medium {
+  color: #f59e0b;
+}
+
+.strength-text.strong {
+  color: #10b981;
+}
+
+/* Unique Input Fields */
+.form-group input {
+  width: 100%;
+  padding: 0.8rem 1rem 0.8rem 3rem;
+  border: 2px solid #e5e7eb;
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  background: rgba(255, 255, 255, 0.6);
+  transition: var(--transition-smooth);
+  color: #1f2937;
+  outline: none;
+}
+
+.form-group input:focus {
+  border-color: #f5576c;
+  background: white;
+  box-shadow: 0 0 0 4px rgba(245, 87, 108, 0.1);
+  transform: scale(1.01);
+}
+
+.form-group input::placeholder {
+  color: #9ca3af;
+  font-weight: 400;
+}
+
+.form-group input:focus + .input-icon,
+.form-group input:focus ~ .input-icon {
+  color: #f5576c;
+}
+
+/* ===== PASSWORD TOGGLE ===== */
+.password-toggle {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #9ca3af;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: var(--transition-smooth);
+  padding: 0.2rem;
+  z-index: 2;
+}
+
+.password-toggle:hover {
+  color: #4b5563;
+}
+
+/* ===== TERMS & CONDITIONS ===== */
+.terms-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin: 1.2rem 0 1.5rem 0;
+}
+
+.terms-check input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #f5576c;
+  cursor: pointer;
+  margin-top: 0.15rem;
+  flex-shrink: 0;
+}
+
+.terms-check label {
+  font-size: 0.85rem;
+  color: #4b5563;
+  cursor: pointer;
+  line-height: 1.5;
+}
+
+.terms-check label a {
+  color: #f5576c;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.terms-check label a:hover {
+  text-decoration: underline;
+}
+
+/* ===== SUBMIT BUTTON ===== */
+.register-btn {
+  width: 100%;
+  padding: 0.9rem;
+  background: var(--secondary-gradient);
+  border: none;
+  border-radius: var(--radius-md);
+  color: white;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  box-shadow: 0 4px 20px rgba(245, 87, 108, 0.3);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.register-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 32px rgba(245, 87, 108, 0.4);
+}
+
+.register-btn:active {
+  transform: translateY(-1px);
+}
+
+.register-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: 0.5s;
+}
+
+.register-btn:hover::before {
+  left: 100%;
+}
+
+/* Loading State */
+.register-btn.loading {
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+
+.register-btn .spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===== DIVIDER ===== */
+.register-divider {
+  display: flex;
+  align-items: center;
+  margin: 1.5rem 0;
+  color: #9ca3af;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.register-divider::before,
+.register-divider::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #e5e7eb, transparent);
+}
+
+.register-divider::before {
+  margin-right: 1rem;
+}
+
+.register-divider::after {
+  margin-left: 1rem;
+}
+
+/* ===== SOCIAL BUTTONS ===== */
+.social-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-btn {
+  flex: 1;
+  padding: 0.7rem;
+  border: 2px solid #e5e7eb;
+  border-radius: var(--radius-md);
+  background: white;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  color: #4b5563;
+  font-weight: 500;
+}
+
+.social-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border-color: #f5576c;
+}
+
+.social-btn.google:hover {
+  border-color: #ea4335;
+  color: #ea4335;
+}
+
+.social-btn.github:hover {
+  border-color: #24292e;
+  color: #24292e;
+}
+
+/* ===== LOGIN LINK ===== */
+.login-link {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+
+.login-link a {
+  color: #f5576c;
+  text-decoration: none;
+  font-weight: 700;
+  transition: var(--transition-smooth);
+}
+
+.login-link a:hover {
+  color: #764ba2;
+  text-decoration: underline;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 480px) {
+  .register-card {
+    padding: 2rem 1.5rem;
+    border-radius: 24px;
+    max-height: 100vh;
+  }
+
+  .logo-icon {
+    width: 65px;
+    height: 65px;
+    font-size: 2rem;
+  }
+
+  .register-logo h2 {
+    font-size: 1.6rem;
+  }
+
+  .form-group input {
+    padding: 0.75rem 1rem 0.75rem 2.8rem;
+    font-size: 0.95rem;
+  }
+
+  .social-buttons {
+    flex-direction: column;
+  }
+
+  .progress-steps {
+    gap: 0.5rem;
+  }
+
+  .progress-step {
+    width: 30px;
+  }
+
+  .progress-step.active {
+    width: 40px;
+  }
+}
+
+@media (max-width: 380px) {
+  .register-card {
+    padding: 1.5rem 1rem;
+  }
+
+  .register-logo h2 {
+    font-size: 1.4rem;
+  }
+
+  .form-group input {
+    padding: 0.7rem 1rem 0.7rem 2.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* ===== ANIMATION FOR ELEMENTS ===== */
+.register-card .form-group {
+  animation: fadeIn 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.register-card .form-group:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.register-card .form-group:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.register-card .form-group:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.register-card .terms-check {
+  animation: fadeIn 0.6s ease-out 0.25s forwards;
+  opacity: 0;
+}
+
+.register-card .register-btn {
+  animation: fadeIn 0.6s ease-out 0.3s forwards;
+  opacity: 0;
+}
+
+.register-card .register-divider {
+  animation: fadeIn 0.6s ease-out 0.35s forwards;
+  opacity: 0;
+}
+
+.register-card .social-buttons {
+  animation: fadeIn 0.6s ease-out 0.4s forwards;
+  opacity: 0;
+}
+
+.register-card .login-link {
+  animation: fadeIn 0.6s ease-out 0.45s forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== SUCCESS TOAST ANIMATION ===== */
+@keyframes successPop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.success-toast {
+  animation: successPop 0.5s ease-out;
+}
+
+/* ===== CUSTOM SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--secondary-gradient);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
+}
