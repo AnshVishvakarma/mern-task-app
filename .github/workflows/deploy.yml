@@ -37,4 +37,4 @@ jobs:
     steps:
     - name: Deploy to Server
       run: |
-        echo "✅ Deployment successful!"
+        run: echo "✅ Deployment successful! Version 2"
