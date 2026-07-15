@@ -15,23 +15,26 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+      with:
+        submodules: false   # ✅ YE LINE ADD KAREIN
     
     - name: Login to Docker Hub
-      run: |
-        echo "🔐 Logging in to Docker Hub..."
-        echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
     
     - name: Build and Push Backend
       run: |
         cd backend
-        docker build -t $DOCKER_USERNAME/task-backend:latest .
-        docker push $DOCKER_USERNAME/task-backend:latest
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/task-backend:latest .
+        docker push ${{ secrets.DOCKER_USERNAME }}/task-backend:latest
     
     - name: Build and Push Frontend
       run: |
         cd frontend
-        docker build -t $DOCKER_USERNAME/task-frontend:latest .
-        docker push $DOCKER_USERNAME/task-frontend:latest
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/task-frontend:latest .
+        docker push ${{ secrets.DOCKER_USERNAME }}/task-frontend:latest
 
   deploy:
     needs: build-and-push
