@@ -8,27 +8,40 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Show Secret Info
+      - name: Debug Secrets
         env:
           USERNAME: ${{ secrets.DOCKER_USERNAME }}
           TOKEN: ${{ secrets.DOCKER_PASSWORD }}
         run: |
-          echo "Username: '$USERNAME'"
+          echo "========== DEBUG =========="
+          echo "Username: [$USERNAME]"
           echo "Username Length: ${#USERNAME}"
           echo "Token Length: ${#TOKEN}"
+          echo "First Bytes (hex):"
+          printf "%s" "$TOKEN" | od -An -tx1 | head
+          echo "==========================="
 
-      - name: Login using Docker CLI
+      - name: Docker Login
         env:
           USERNAME: ${{ secrets.DOCKER_USERNAME }}
           TOKEN: ${{ secrets.DOCKER_PASSWORD }}
         run: |
-          echo "$TOKEN" | docker login docker.io --username "$USERNAME" --password-stdin
+          echo "$TOKEN" | docker login docker.io \
+            --username "$USERNAME" \
+            --password-stdin
 
-      - name: Pull Test Image
-        run: |
-          docker pull hello-world
-
-      - name: Show Docker Info
+      - name: Docker Info
         run: docker info
+
+      - name: Build Backend
+        run: |
+          cd backend
+          docker build -t test-backend .
+
+      - name: Build Frontend
+        run: |
+          cd frontend
+          docker build -t test-frontend .
