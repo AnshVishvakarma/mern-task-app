@@ -159,22 +159,11 @@ const Login = () => {
             )}
           </button>
 
-          {/* Divider */}
-          <div className="login-divider">or continue with</div>
-
-          {/* Social Buttons */}
-          <div className="social-buttons">
-            <button type="button" className="social-btn google" disabled={loading}>
-              🅶 Google
-            </button>
-            <button type="button" className="social-btn github" disabled={loading}>
-              🐙 GitHub
-            </button>
-          </div>
+         
 
           {/* Sign Up Link */}
           <div className="signup-link">
-            Don't have an account? <a href="#" onClick={(e) => {
+            Don't have an account? <a href="/register" onClick={(e) => {
               e.preventDefault();
               alert('Sign up functionality coming soon!');
             }}>Sign up</a>

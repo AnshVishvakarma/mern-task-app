@@ -260,21 +260,13 @@ const Register = () => {
           </button>
 
           {/* Divider */}
-          <div className="register-divider">or sign up with</div>
 
           {/* Social Buttons */}
-          <div className="social-buttons">
-            <button type="button" className="social-btn google" disabled={loading}>
-              🅶 Google
-            </button>
-            <button type="button" className="social-btn github" disabled={loading}>
-              🐙 GitHub
-            </button>
-          </div>
+         
 
           {/* Login Link */}
           <div className="login-link">
-            Already have an account? <a href="#" onClick={(e) => {
+            Already have an account? <a href="/login" onClick={(e) => {
               e.preventDefault();
               window.location.href = '/login';
             }}>Sign in</a>
