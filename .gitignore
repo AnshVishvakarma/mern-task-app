@@ -42,3 +42,5 @@ backend/node_modules/
 logs/
 *.log
 actions-runner/
+[0-9a-f]*
+[0-9a-f]*/
