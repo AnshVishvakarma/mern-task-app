@@ -21,6 +21,6 @@ spec:
         - containerPort: 5000
         env:
         - name: MONGO_URI
-          value: mongodb://mongodb-service:27017/taskdb
+          value: mongodb://10.43.156.123:27017/taskdb
         - name: JWT_SECRET
           value: mySuperSecretKey123
