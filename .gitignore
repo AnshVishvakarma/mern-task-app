@@ -44,3 +44,7 @@ logs/
 actions-runner/
 [0-9a-f]*
 [0-9a-f]*/
+[0-9a-f]*
+[0-9a-f]*/
+node_modules/
+actions-runner/
